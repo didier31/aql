@@ -1,4 +1,4 @@
-// Generated from Query.g4 by ANTLR 4.3
+// Generated from Query.g4 by ANTLR 4.4
 
 /*******************************************************************************
  * Copyright (c) 2015 Obeo.
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class QueryParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.3", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.4", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -406,7 +406,6 @@ public class QueryParser extends Parser {
 				setState(33); expression(14);
 				}
 				break;
-
 			case 2:
 				{
 				_localctx = new MinContext(_localctx);
@@ -416,7 +415,6 @@ public class QueryParser extends Parser {
 				setState(35); expression(13);
 				}
 				break;
-
 			case 3:
 				{
 				_localctx = new LetExprContext(_localctx);
@@ -442,7 +440,6 @@ public class QueryParser extends Parser {
 				setState(46); expression(1);
 				}
 				break;
-
 			case 4:
 				{
 				_localctx = new VarRefContext(_localctx);
@@ -451,7 +448,6 @@ public class QueryParser extends Parser {
 				setState(48); match(Ident);
 				}
 				break;
-
 			case 5:
 				{
 				_localctx = new LitContext(_localctx);
@@ -460,7 +456,6 @@ public class QueryParser extends Parser {
 				setState(49); literal();
 				}
 				break;
-
 			case 6:
 				{
 				_localctx = new ParenContext(_localctx);
@@ -471,7 +466,6 @@ public class QueryParser extends Parser {
 				setState(52); match(T__3);
 				}
 				break;
-
 			case 7:
 				{
 				_localctx = new ConditionalContext(_localctx);
@@ -508,7 +502,6 @@ public class QueryParser extends Parser {
 						setState(66); expression(13);
 						}
 						break;
-
 					case 2:
 						{
 						_localctx = new AddContext(new ExpressionContext(_parentctx, _parentState));
@@ -519,7 +512,6 @@ public class QueryParser extends Parser {
 						setState(69); expression(12);
 						}
 						break;
-
 					case 3:
 						{
 						_localctx = new CompContext(new ExpressionContext(_parentctx, _parentState));
@@ -530,7 +522,6 @@ public class QueryParser extends Parser {
 						setState(73); expression(11);
 						}
 						break;
-
 					case 4:
 						{
 						_localctx = new AndContext(new ExpressionContext(_parentctx, _parentState));
@@ -541,7 +532,6 @@ public class QueryParser extends Parser {
 						setState(77); expression(10);
 						}
 						break;
-
 					case 5:
 						{
 						_localctx = new OrContext(new ExpressionContext(_parentctx, _parentState));
@@ -552,7 +542,6 @@ public class QueryParser extends Parser {
 						setState(80); expression(9);
 						}
 						break;
-
 					case 6:
 						{
 						_localctx = new XorContext(new ExpressionContext(_parentctx, _parentState));
@@ -563,7 +552,6 @@ public class QueryParser extends Parser {
 						setState(83); expression(8);
 						}
 						break;
-
 					case 7:
 						{
 						_localctx = new ImpliesContext(new ExpressionContext(_parentctx, _parentState));
@@ -574,7 +562,6 @@ public class QueryParser extends Parser {
 						setState(86); expression(7);
 						}
 						break;
-
 					case 8:
 						{
 						_localctx = new NavContext(new ExpressionContext(_parentctx, _parentState));
@@ -806,7 +793,6 @@ public class QueryParser extends Parser {
 				setState(107); match(Ident);
 				}
 				break;
-
 			case 2:
 				_localctx = new CallOrApplyContext(_localctx);
 				enterOuterAlt(_localctx, 2);
@@ -815,7 +801,6 @@ public class QueryParser extends Parser {
 				setState(109); callExp();
 				}
 				break;
-
 			case 3:
 				_localctx = new CollectionCallContext(_localctx);
 				enterOuterAlt(_localctx, 3);
@@ -1305,7 +1290,6 @@ public class QueryParser extends Parser {
 				setState(148); match(String);
 				}
 				break;
-
 			case 2:
 				_localctx = new ErrorStringLitContext(_localctx);
 				enterOuterAlt(_localctx, 2);
@@ -1313,7 +1297,6 @@ public class QueryParser extends Parser {
 				setState(149); match(ErrorString);
 				}
 				break;
-
 			case 3:
 				_localctx = new IntegerLitContext(_localctx);
 				enterOuterAlt(_localctx, 3);
@@ -1321,7 +1304,6 @@ public class QueryParser extends Parser {
 				setState(150); match(Integer);
 				}
 				break;
-
 			case 4:
 				_localctx = new RealLitContext(_localctx);
 				enterOuterAlt(_localctx, 4);
@@ -1329,7 +1311,6 @@ public class QueryParser extends Parser {
 				setState(151); match(Real);
 				}
 				break;
-
 			case 5:
 				_localctx = new TrueLitContext(_localctx);
 				enterOuterAlt(_localctx, 5);
@@ -1337,7 +1318,6 @@ public class QueryParser extends Parser {
 				setState(152); match(T__26);
 				}
 				break;
-
 			case 6:
 				_localctx = new FalseLitContext(_localctx);
 				enterOuterAlt(_localctx, 6);
@@ -1345,7 +1325,6 @@ public class QueryParser extends Parser {
 				setState(153); match(T__39);
 				}
 				break;
-
 			case 7:
 				_localctx = new NullLitContext(_localctx);
 				enterOuterAlt(_localctx, 7);
@@ -1353,7 +1332,6 @@ public class QueryParser extends Parser {
 				setState(154); match(T__44);
 				}
 				break;
-
 			case 8:
 				_localctx = new ExplicitSeqLitContext(_localctx);
 				enterOuterAlt(_localctx, 8);
@@ -1363,7 +1341,6 @@ public class QueryParser extends Parser {
 				setState(157); match(T__24);
 				}
 				break;
-
 			case 9:
 				_localctx = new ExplicitSetLitContext(_localctx);
 				enterOuterAlt(_localctx, 9);
@@ -1373,7 +1350,6 @@ public class QueryParser extends Parser {
 				setState(161); match(T__24);
 				}
 				break;
-
 			case 10:
 				_localctx = new EnumLitContext(_localctx);
 				enterOuterAlt(_localctx, 10);
@@ -1385,7 +1361,6 @@ public class QueryParser extends Parser {
 				setState(167); match(Ident);
 				}
 				break;
-
 			case 11:
 				_localctx = new ErrorEnumLitContext(_localctx);
 				enterOuterAlt(_localctx, 11);
@@ -1396,7 +1371,6 @@ public class QueryParser extends Parser {
 				setState(171); match(T__12);
 				}
 				break;
-
 			case 12:
 				_localctx = new TypeLitContext(_localctx);
 				enterOuterAlt(_localctx, 12);
@@ -1684,7 +1658,6 @@ public class QueryParser extends Parser {
 				setState(203); match(Ident);
 				}
 				break;
-
 			case 2:
 				_localctx = new ErrorClassifierTypeContext(_localctx);
 				enterOuterAlt(_localctx, 2);
@@ -1715,19 +1688,12 @@ public class QueryParser extends Parser {
 	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0: return precpred(_ctx, 12);
-
 		case 1: return precpred(_ctx, 11);
-
 		case 2: return precpred(_ctx, 10);
-
 		case 3: return precpred(_ctx, 9);
-
 		case 4: return precpred(_ctx, 8);
-
 		case 5: return precpred(_ctx, 7);
-
 		case 6: return precpred(_ctx, 6);
-
 		case 7: return precpred(_ctx, 15);
 		}
 		return true;
