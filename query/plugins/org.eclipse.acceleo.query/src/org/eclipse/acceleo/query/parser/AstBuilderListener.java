@@ -29,7 +29,6 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.NotNull;
-import org.antlr.v4.runtime.misc.Nullable;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.eclipse.acceleo.query.ast.And;
@@ -375,8 +374,8 @@ public class AstBuilderListener extends QueryBaseListener {
 		private static final String MISSING_EXPRESSION = "missing expression";
 
 		@Override
-		public void syntaxError(@NotNull Recognizer<?, ?> recognizer, @Nullable Object offendingSymbol,
-				int line, int charPositionInLine, @NotNull String msg, @Nullable RecognitionException e) {
+		public void syntaxError(@NotNull Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
+				int charPositionInLine, @NotNull String msg, RecognitionException e) {
 			if (e != null) {
 				if (e.getCtx() instanceof IterationCallContext) {
 					iterationCallContextError(e);
@@ -423,7 +422,8 @@ public class AstBuilderListener extends QueryBaseListener {
 		 * @param e
 		 *            the {@link RecognitionException}
 		 */
-		private void classifierTypeRuleContextError(Object offendingSymbol, String msg, RecognitionException e) {
+		private void classifierTypeRuleContextError(Object offendingSymbol, String msg,
+				RecognitionException e) {
 			final ClassifierTypeRuleContext ctx = (ClassifierTypeRuleContext)e.getCtx();
 			final Integer startPosition = Integer.valueOf(ctx.start.getStartIndex());
 			final Integer endPosition = Integer.valueOf(((Token)offendingSymbol).getStopIndex() + 1);
@@ -548,14 +548,14 @@ public class AstBuilderListener extends QueryBaseListener {
 			errorRule = QueryParser.RULE_typeLiteral;
 			if (ctx.getChildCount() == 4) {
 				final String eEnumName = ctx.getChild(2).getText();
-				final ErrorEnumLiteral errorEnumLiteral = builder
-						.errorEnumLiteral(false, ePackage, eEnumName);
+				final ErrorEnumLiteral errorEnumLiteral = builder.errorEnumLiteral(false, ePackage,
+						eEnumName);
 				startPositions.put(errorEnumLiteral, startPosition);
 				endPositions.put(errorEnumLiteral, endPosition);
 				pushError(errorEnumLiteral, String.format(INVALID_ENUM_LITERAL, msg));
 			} else {
-				final ErrorTypeLiteral errorTypeLiteral = builder.errorTypeLiteral(false,
-						new String[] {ePackage, });
+				final ErrorTypeLiteral errorTypeLiteral = builder.errorTypeLiteral(false, new String[] {
+						ePackage, });
 				startPositions.put(errorTypeLiteral, startPosition);
 				endPositions.put(errorTypeLiteral, endPosition);
 				pushError(errorTypeLiteral, String.format(INVALID_TYPE_LITERAL, msg));
@@ -601,8 +601,8 @@ public class AstBuilderListener extends QueryBaseListener {
 				endPositions.put(errorVariableDeclaration, endPosition);
 				pushError(errorVariableDeclaration, "missing variable declaration");
 			}
-			if (((Token)offendingSymbol).getText().isEmpty()
-					|| ")".equals(((Token)offendingSymbol).getText())) {
+			if (((Token)offendingSymbol).getText().isEmpty() || ")".equals(((Token)offendingSymbol)
+					.getText())) {
 				final ErrorExpression errorExpression = builder.errorExpression();
 				// not missing ')' only missing expression
 				if (((Token)offendingSymbol).getStartIndex() == ((Token)offendingSymbol).getStopIndex()) {
@@ -648,8 +648,8 @@ public class AstBuilderListener extends QueryBaseListener {
 				errorCollectionCall = builder.errorCall(null, false, receiver);
 			}
 			startPositions.put(errorCollectionCall, startPositions.get(receiver));
-			endPositions.put(errorCollectionCall, Integer
-					.valueOf(((Token)offendingSymbol).getStopIndex() + 1));
+			endPositions.put(errorCollectionCall, Integer.valueOf(((Token)offendingSymbol).getStopIndex()
+					+ 1));
 			pushError(errorCollectionCall, "missing collection service call");
 		}
 
@@ -871,12 +871,12 @@ public class AstBuilderListener extends QueryBaseListener {
 
 			if (!diagnosticStack.isEmpty()) {
 				final List<?> data = diagnosticStack.peek().getData();
-				if (data.get(0).equals(startPositions.get(expression))
-						&& data.get(1).equals(endPositions.get(expression))) {
+				if (data.get(0).equals(startPositions.get(expression)) && data.get(1).equals(endPositions.get(
+						expression))) {
 					final Diagnostic tmpDiagnostic = diagnosticStack.pop();
 					diagnostics.add(new BasicDiagnostic(tmpDiagnostic.getSeverity(), tmpDiagnostic
-							.getSource(), tmpDiagnostic.getCode(), tmpDiagnostic.getMessage(),
-							new Object[] {expression }));
+							.getSource(), tmpDiagnostic.getCode(), tmpDiagnostic.getMessage(), new Object[] {
+									expression }));
 				}
 			}
 
@@ -1339,8 +1339,8 @@ public class AstBuilderListener extends QueryBaseListener {
 				final Expression variableExpression = popExpression();
 				variableDeclaration = builder.variableDeclaration(ctx.getChild(0).getText(), typeLiteral,
 						variableExpression);
-				endPositions.put(variableDeclaration, Integer
-						.valueOf(((ParserRuleContext)ctx.getChild(2)).stop.getStopIndex() + 1));
+				endPositions.put(variableDeclaration, Integer.valueOf(((ParserRuleContext)ctx.getChild(
+						2)).stop.getStopIndex() + 1));
 			} else {
 				final Expression variableExpression = popExpression();
 				variableDeclaration = builder.variableDeclaration(ctx.getChild(0).getText(),
@@ -1375,10 +1375,10 @@ public class AstBuilderListener extends QueryBaseListener {
 		if (ctx.getChild(ctx.getChildCount() - 1) instanceof ErrorNode) {
 			// at this point ANTLR can report a missing ')' even is the closing parenthesis is present
 			// so we check by hand
-			final ParserRuleContext parenthesisNode = (ParserRuleContext)ctx
-					.getChild(ctx.getChildCount() - 2).getChild(0);
-			final boolean missingParenthesis = parenthesisNode != null
-					&& !")".equals(parenthesisNode.stop.getText());
+			final ParserRuleContext parenthesisNode = (ParserRuleContext)ctx.getChild(ctx.getChildCount() - 2)
+					.getChild(0);
+			final boolean missingParenthesis = parenthesisNode != null && !")".equals(parenthesisNode.stop
+					.getText());
 			call = builder.errorCall(serviceName, missingParenthesis, iterator.getExpression(), lambda);
 			if (missingParenthesis) {
 				pushError((Error)call, "missing ')'");
@@ -1430,7 +1430,7 @@ public class AstBuilderListener extends QueryBaseListener {
 				if (eEnumLiterals.size() > 1) {
 					diagnosticStack.push(new BasicDiagnostic(Diagnostic.WARNING, PLUGIN_ID, 0, String.format(
 							AMBIGUOUS_ENUM_LITERAL, eEnumLiteralName, eEnumName, ePackageName), new Object[] {
-							startPosition, stopPosition, }));
+									startPosition, stopPosition, }));
 				}
 			}
 			startPositions.put(toPush, startPosition);
@@ -1495,7 +1495,7 @@ public class AstBuilderListener extends QueryBaseListener {
 				if (type.size() > 1) {
 					diagnosticStack.push(new BasicDiagnostic(Diagnostic.WARNING, PLUGIN_ID, 0, String.format(
 							AMBIGUOUS_TYPE_LITERAL, eClassName, ePackageName), new Object[] {startPosition,
-							stopPosition, }));
+									stopPosition, }));
 				}
 			}
 			startPositions.put(toPush, startPosition);
@@ -1589,8 +1589,8 @@ public class AstBuilderListener extends QueryBaseListener {
 	 */
 	@Override
 	public void exitExplicitSeqLit(ExplicitSeqLitContext ctx) {
-		final SequenceInExtensionLiteral sequenceInExtension = builder
-				.sequenceInExtension(getExpressions(ctx));
+		final SequenceInExtensionLiteral sequenceInExtension = builder.sequenceInExtension(getExpressions(
+				ctx));
 
 		startPositions.put(sequenceInExtension, Integer.valueOf(ctx.start.getStartIndex()));
 		endPositions.put(sequenceInExtension, Integer.valueOf(ctx.stop.getStopIndex() + 1));
@@ -1624,8 +1624,8 @@ public class AstBuilderListener extends QueryBaseListener {
 		}
 
 		final Conditional conditional;
-		if (errorRule == QueryParser.RULE_expression || count == CONDITIONAL_CONTEXT_CHILD_COUNT
-				&& ctx.getChild(6) instanceof ErrorNode) {
+		if (errorRule == QueryParser.RULE_expression || count == CONDITIONAL_CONTEXT_CHILD_COUNT && ctx
+				.getChild(6) instanceof ErrorNode) {
 			conditional = builder.errorConditional(predicate, trueBranch, falseBranch);
 			errorRule = NO_ERROR;
 			pushError((ErrorConditional)conditional, "incomplet conditional");
